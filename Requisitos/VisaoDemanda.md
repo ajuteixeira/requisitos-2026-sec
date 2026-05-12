@@ -5,6 +5,7 @@
 | Data | Versão | Descrição | Autor |
 | :--- | :--- | :--- | :--- |
 | 02/05/2026 | 1.0 | Criação do documento de visão e definição do escopo inicial | Juliana |
+| 12/05/2026 | 1.1 | Atualização dos atores descritos nas funcionalidades e da descrição da arquitetura  | Juliana |
 
 ## 1. Objetivo
 
@@ -63,14 +64,14 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 #### F1.1 Realização de simulados cronometrados
 * **Descrição:** Permite realizar testes com tempo limitado para simular a experiência real do exame.
 * **Incluída**
-* **Atores:** Estudante
+* **Atores:** Aluno concluinte
 * **Frequência:** Alta
 * **Valor:** Alto
 
 #### F1.2 Seleção de questões por filtro
 * **Descrição:** Filtro por ano, curso e tipo de componente (Formação Geral ou Conhecimento Específico).
 * **Incluída**
-* **Atores:** Estudante
+* **Atores:** Aluno concluinte
 * **Frequência:** Média
 * **Valor:** Médio
 
@@ -81,14 +82,14 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 #### F2.1 Exibição de gabarito comentado
 * **Descrição:** Apresenta explicações detalhadas sobre a resposta correta e as incorretas.
 * **Incluída**
-* **Atores:** Estudante
+* **Atores:** Aluno concluinte
 * **Frequência:** Alta
 * **Valor:** Alto
 
 #### F2.2 Fórum de discussão por questão
 * **Descrição:** Espaço para troca de conhecimento e dúvidas entre usuários em cada item do banco.
 * **Incluída**
-* **Atores:** Estudante, Professor
+* **Atores:** Aluno concluinte, Professor
 * **Frequência:** Média
 * **Valor:** Médio
 
@@ -99,14 +100,14 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 #### F3.1 Painel de estatísticas individuais
 * **Descrição:** Gráficos de desempenho por área de conhecimento para o aluno.
 * **Incluída**
-* **Atores:** Estudante
+* **Atores:** Aluno concluinte
 * **Frequência:** Média
 * **Valor:** Alto
 
 #### F3.2 Relatório gerencial de turmas
 * **Descrição:** Visão consolidada para a coordenação identificar lacunas de aprendizagem.
 * **Incluída**
-* **Atores:** Coordenador
+* **Atores:** Coordenador de curso
 * **Frequência:** Média
 * **Valor:** Alto
 
@@ -117,7 +118,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 #### F4.1 Autenticação e Perfil
 * **Descrição:** Login seguro para diferenciar estudantes, professores, coordenador e administrador.
 * **Incluída**
-* **Atores:** Todos os usuários
+* **Atores:** Aluno concluinte, Coordenador de curso, Professor, Administrador
 * **Frequência:** Alta
 * **Valor:** Alto
 
@@ -132,11 +133,11 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 
 ### Descrição da arquitetura
 
-O sistema será uma aplicação **web e mobile**, estruturada para suportar alta escalabilidade de dados (banco de questões).
+O sistema será uma aplicação **web responsiva**, estruturada para suportar alta escalabilidade de dados (banco de questões).
 
 #### 1. Frontend
 * Acesso via navegador e dispositivos móveis
-* Interfaces para: Estudante, professor, coordenador e administrador
+* Interfaces para: Aluno concluinte, Coordenador de curso, Professor, Administrador
 
 #### 2. Backend
 Responsável pela lógica de negócio e regras do sistema:
