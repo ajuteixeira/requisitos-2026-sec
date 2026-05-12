@@ -5,11 +5,12 @@
 | Data | Versão | Descrição | Autor |
 | :--- | :--- | :--- | :--- |
 | 02/05/2026 | 1.0 | Criação do documento de visão e definição do escopo inicial | Juliana |
-| 12/05/2026 | 1.1 | Atualização dos atores descritos nas funcionalidades e da descrição da arquitetura  | Juliana |
+| 12/05/2026 | 1.1 | Atualização dos atores descritos nas funcionalidades e da descrição da arquitetura | Juliana |
+| 13/05/2026 | 1.2 | Inclusão de permissões de cadastro para professores e visualização para coordenadores | Juliana |
 
 ## 1. Objetivo
 
-Definir a proposta de valor e o escopo do sistema de questões comentadas do ENADE, detalhando as necessidades dos estudantes de graduação, coordenações de curso e professores. O projeto foca na aplicação da engenharia de requisitos para especificar uma solução web/mobile que auxilie no preparo para o exame.
+Definir a proposta de valor e o escopo do sistema de questões comentadas do ENADE, detalhando as necessidades dos estudantes de graduação, coordenações de curso e professores. O projeto foca na aplicação da engenharia de requisitos para especificar uma solução web responsiva que auxilie no preparo para o exame.
 
 ## 2. Proposta de valor
 
@@ -18,10 +19,11 @@ O sistema permitirá democratizar o acesso a materiais de estudo de alta qualida
 ## 3. Descrição da demanda
 
 A demanda surge da dificuldade enfrentada pelos estudantes em se preparar para o ENADE devido à escassez de materiais organizados e simulados práticos. O sistema funcionará como um hub educacional para:
-* Prática de **simulados cronometrados**.
-* Consulta de **gabaritos detalhados e comentados**.
-* Acompanhamento de **estatísticas de desempenho** por área de conhecimento.
-* Interação colaborativa através de **fóruns de discussão**.
+* Prática de simulados cronometrados
+* Consulta de gabaritos detalhados e comentados
+* Acompanhamento de estatísticas de desempenho por área de conhecimento
+* Interação colaborativa através de fóruns de discussão
+* Cadastro de questões em padrão ENADE
 
 Todo o processo será digital, com autenticação de usuários e histórico de simulados e comentários.
 
@@ -34,10 +36,10 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 | Nome | Papel | Responsabilidades | Representante |
 | :--- | :--- | :--- | :--- |
 | **Estudante** | Usuário Final | Realizar simulados, consultar gabaritos e interagir no fórum. | - |
-| **Coordenação de Curso** | Cliente | Acompanhar indicadores de desempenho e evolução das turmas. | - |
-| **Professores** | Stakeholder | Prover apoio pedagógico e validar comentários técnicos. | - |
+| **Coordenação de Curso** | Cliente | Acompanhar indicadores de desempenho, evolução das turmas e monitorar o cadastro de questões. | - |
+| **Professores** | Stakeholder | Prover apoio pedagógico, validar comentários técnicos e alimentar o banco de questões de sua área/curso. | - |
 | **Equipe de TI** | Desenvolvimento | Implementar e manter o sistema. | - |
-| **INEP** | Fornecedor | Prover a base oficial de questões e gabaritos. | - |
+| **INEP** | Fornecedor | Prover o padrão oficial de questões | - |
 
 ## 5. Personas
 
@@ -46,12 +48,12 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 - **Objetivo:** Praticar com questões reais, entender erros através de comentários e monitorar sua evolução por área de conhecimento.
 
 ### 5.2. Coordenador de curso
-- **Descrição:** Responsável pela gestão acadêmica do curso de graduação
-- **Objetivo:** Identificar lacunas de aprendizado no corpo discente através das estatísticas de desempenho fornecidas pelo sistema
+- **Descrição:** Responsável pela gestão acadêmica do curso de graduação.
+- **Objetivo:** Identificar lacunas de aprendizado no corpo discente e ter visibilidade das questões que estão sendo cadastradas pelos professores.
 
 ### 5.3. Professor
 - **Descrição:** Docente especialista responsável por prover apoio pedagógico e técnico aos estudantes na plataforma.
-- **Objetivo:** Inserir comentários técnicos nas questões e sanar dúvidas acadêmicas dos alunos nos fóruns de discussão.
+- **Objetivo:** Inserir comentários técnicos, sanar dúvidas nos fóruns e cadastrar novas questões específicas de sua área de atuação seguindo os padrões do INEP.
 
 ### 5.4. Administrador
 - **Descrição:** Integrante da equipe de suporte técnico.
@@ -87,7 +89,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Valor:** Alto
 
 #### F2.2 Fórum de discussão por questão
-* **Descrição:** Espaço para troca de conhecimento e dúvidas entre usuários em cada item do banco.
+* **Descrição:** Espaço para troca de conhecimento, onde o acesso dos atores é restrito aos fóruns das questões vinculadas à sua área/curso.
 * **Incluída**
 * **Atores:** Aluno concluinte, Professor
 * **Frequência:** Média
@@ -122,10 +124,24 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Frequência:** Alta
 * **Valor:** Alto
 
-#### F4.2 Manutenção do banco de questões
-* **Descrição:** Permite cadastrar, editar e organizar questões do portal INEP.
+#### F4.2 Manutenção global do banco de questões
+* **Descrição:** Permite ao administrador cadastrar, editar e organizar qualquer questão do sistema.
 * **Incluída**
 * **Atores:** Administrador
+* **Frequência:** Baixa
+* **Valor:** Médio
+
+#### F4.3 Cadastro restrito de questões
+* **Descrição:** Permite ao professor cadastrar e editar apenas questões de sua área/curso.
+* **Incluída**
+* **Atores:** Professor
+* **Frequência:** Média
+* **Valor:** Alto
+
+#### F4.4 Visualização de acervo em construção
+* **Descrição:** Permite ao coordenador visualizar as questões que estão sendo cadastradas pelos professores de seu curso.
+* **Incluída**
+* **Atores:** Coordenador de curso
 * **Frequência:** Baixa
 * **Valor:** Médio
 
@@ -133,7 +149,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 
 ### Descrição da arquitetura
 
-O sistema será uma aplicação **web responsiva**, estruturada para suportar alta escalabilidade de dados (banco de questões).
+O sistema será uma aplicação web responsiva, estruturada para suportar alta escalabilidade de dados (banco de questões).
 
 #### 1. Frontend
 * Acesso via navegador e dispositivos móveis
