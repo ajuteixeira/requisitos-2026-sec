@@ -1,12 +1,10 @@
-# Especificação de Requisitos Não Funcionais
-
-**_LAPIS_**
+# Especificação de Requisitos Não Funcionais - Sistema ENADE Comentado (SEC)
 
 ## Histórico de Versões
 
 | Data       | Versão | Descrição                                                           | Autor     |
 | ---------- | ------ | ------------------------------------------------------------------- | --------- |
-| 15/05/2026 | 1.0    | Preenchimento inicial dos RNFs com base no Documento de Visão v1.3. | Gemini AI |
+| 15/05/2026 | 1.0    | Preenchimento inicial dos RNFs com base no Documento de Visão v1.3 | Juliana |
 
 ## 1. Requisitos de Produto
 
@@ -60,7 +58,7 @@
 
 #### 1.3.4. Recuperabilidade
 
-- **RNF-012 (Políticas de Backup):** O banco de dados SEC_BD (PostgreSQL) deve possuir rotinas automatizadas de backup incremental diário e backup completo semanal, com tempo máximo de recuperação (RTO) de até 4 hours em caso de desastre.
+- **RNF-012 (Políticas de Backup):** O banco de dados SEC_BD (PostgreSQL) deve possuir rotinas automatizadas de backup incremental diário e backup completo semanal, com tempo máximo de recuperação (RTO) de até 4 horas em caso de desastre.
 
 ### 1.4. Segurança
 
@@ -97,7 +95,7 @@
 
 #### 1.5.3. Necessidade
 
-- **RNF-021 (Minimização de Dados):** O sistema exigirá apenas as informações estritamente necessárias para o login e vinculação acadêmica (Nome, E-mail institucional, Matrícula, Curso e Turno).
+- **RNF-021 (Minimização de Dados):** O sistema exigirá apenas as informações estritamente necessárias para o login e vinculação acadêmica (Nome, E-mail institucional, Matrícula e Curso).
 
 #### 1.5.4. Tratamento
 
@@ -107,15 +105,15 @@
 
 #### 1.6.1. Reconhecimento de adequação
 
-- **RNF-023 (Identidade Visual):** A interface deve apresentar de forma clara logotipos institucionais e um cabeçalho identificando o "Sistema ENADE Comentado", permitindo que o usuário compreenda o propósito da plataforma nos primeiros 5 segundos de acesso.
+- **RNF-023 (Identidade Visual):** A interface deve apresentar de forma clara logotipos institucionais e um cabeçalho identificando o SEC, permitindo que o usuário compreenda o propósito da plataforma nos primeiros 5 segundos de acesso.
 
 #### 1.6.2. Facilidade de aprendizado (learnability)
 
-- **RNF-024 (Autoexplicabilidade):** Um usuário estudante de graduação deve ser capaz de iniciar e concluir um simulado cronometrado no primeiro acesso sem a necessidade de ler manuais ou realizar treinamentos prévios.
+- **RNF-024 (Autoexplicabilidade):** Um usuário Aluno Concluinte deve ser capaz de iniciar e concluir um simulado cronometrado no primeiro acesso sem a necessidade de ler manuais ou realizar treinamentos prévios.
 
 #### 1.6.3. Operabilidade
 
-- **RNF-025 (Padrões de Navegação):** O menu lateral ou superior deve fornecer acesso direto às principais funções (Simulados, Banco de Questões, Desempenho e Fóruns) com no máximo 2 cliques a partir da tela inicial (Dashboard).
+- **RNF-025 (Padrões de Navegação):** O menu lateral ou superior deve fornecer acesso direto às principais funçõescom no máximo 2 cliques a partir da tela inicial.
 
 #### 1.6.4. Proteção contra erros do usuário
 
@@ -123,7 +121,7 @@
 
 #### 1.6.5. Inclusividade (acessibilidade)
 
-- **RNF-027 (Acessibilidade Web):** A interface em React deve seguir las diretrizes básicas da WCAG 2.1 (Web Content Accessibility Guidelines), oferecendo suporte a alto contraste e compatibilidade com leitores de tela padrão (como NVDA ou JAWS) para alunos com deficiência visual.
+- **RNF-027 (Acessibilidade Web):** A interface em React deve seguir as diretrizes básicas da WCAG 2.1 (Web Content Accessibility Guidelines), oferecendo suporte a alto contraste e compatibilidade com leitores de tela padrão (como NVDA ou JAWS) para alunos com deficiência visual.
 
 #### 1.6.6. Assistência ao usuário (acessibilidade)
 
@@ -137,7 +135,7 @@
 
 #### 1.7.1. Modularidade
 
-- **RNF-030 (Arquitetura desacoplada):** O projeto deve seguir rigidamente a separação entre a camada de apresentação (FrontEnd em React) e a camada de lógica de negócios (BackEnd em Node.js via REST API), permitindo alterações visuais sem impactos no processamento de dados.
+- **RNF-030 (Arquitetura desacoplada):** O projeto deve seguir rigidamente a separação entre a camada de apresentação e a camada de lógica de negócios, permitindo alterações visuais sem impactos no processamento de dados.
 
 #### 1.7.2. Reusabilidade
 
