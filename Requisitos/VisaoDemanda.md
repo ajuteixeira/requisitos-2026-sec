@@ -7,6 +7,7 @@
 | 02/05/2026 | 1.0 | Criação do documento de visão e definição do escopo inicial | Juliana |
 | 12/05/2026 | 1.1 | Atualização dos atores descritos nas funcionalidades e da descrição da arquitetura | Juliana |
 | 13/05/2026 | 1.2 | Inclusão de permissões de cadastro para professores e visualização para coordenadores | Juliana |
+| 15/05/2026 | 1.3 | Inclusão dos diagramas de componentes e deployment | Juliana |
 
 ## 1. Objetivo
 
@@ -151,26 +152,85 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 
 O sistema será uma aplicação web responsiva, estruturada para suportar alta escalabilidade de dados (banco de questões).
 
-#### 1. Frontend
-* Acesso via navegador e dispositivos móveis
-* Interfaces para: Aluno concluinte, Coordenador de curso, Professor, Administrador
+### 7.1. Diagramas UML
 
-#### 2. Backend
-Responsável pela lógica de negócio e regras do sistema:
-* Módulo de gestão de conteúdo (questões)
-* Módulo de avaliação e simulação
-* Módulo de colaboração (fórum)
-* Módulo pedagógico (gabaritos)
-* Módulo analítico e estatístico
-* Módulo de segurança e autenticação
+#### 7.1.1. Diagrama de Caso de Uso
 
-#### 3. Banco de dados
-Armazena informações como:
-* Questões
-* Gabaritos
-* Usuários
-* Comentários
-* Histórico de simulados
+
+#### 7.1.2. Diagrama de Componentes
+
+```mermaid
+graph TD
+    %% Componentes
+    SF["&laquo;component&raquo;<br/><b>SECFrontEnd</b>"]
+    R["&laquo;component&raquo;<br/><b>React</b>"]
+    SBE["&laquo;component&raquo;<br/><b>SECBackEndAPI</b>"]
+    N["&laquo;component&raquo;<br/><b>Node.js</b>"]
+    SBD["&laquo;component&raquo;<br/><b>SEC_BD</b>"]
+    P["&laquo;component&raquo;<br/><b>Postgres</b>"]
+
+    %% Relacionamentos exatos da sua primeira imagem
+    SF -.-> SBE
+    SF -. "&laquo;use&raquo;" .-> R
+    SBE -. "&laquo;use&raquo;" .-> N
+    SBE -.-> SBD
+    SBD -. "&laquo;use&raquo;" .-> P
+
+    %% Estilização em tons de cinza (conforme a imagem escura)
+    classDef cinzaClaro fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
+    classDef cinzaEscuro fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
+
+    %% Aplicando as cores conforme a hierarquia da imagem
+    class SF,SBE,SBD cinzaClaro;
+    class R,N,P cinzaEscuro;
+
+```
+
+**Componentes principais:**
+- FrontEnd
+- BackEnd
+- BD
+
+#### 7.1.3. Diagrama de Implantação
+
+```mermaid
+
+graph LR
+    classDef dispositivo fill:#161b22,stroke:#444c56,color:#c9d1d9,stroke-dasharray: 5 5;
+    classDef compLogico fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
+    classDef compTech fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
+    subgraph Cliente ["🖥️ MÁQUINA DO CLIENTE"]
+        direction TB
+        SF_C["&laquo;component&raquo;<br/><b>SECFrontEnd</b>"]
+        R_C["&laquo;component&raquo;<br/><b>React</b>"]
+        Specs["CPU: Quad-Core 2.4GHz+<br/>RAM: 8GB+<br/>Resolução: 1080p<br/>SO: Win 10+, macOS, Linux"]
+        SF_C -. "&laquo;use&raquo;" .-> R_C
+    end
+    SF_C -- "HTTPS" --> SBE_A
+    subgraph AWS ["☁️ AWS - CLOUDE"]
+        direction LR
+        SBE_A["&laquo;component&raquo;<br/><b>SECBackEndAPI</b>"]
+            direction TB
+            Node_A["&laquo;component&raquo;<br/><b>Node.js</b>"]
+            SBD_A["&laquo;component&raquo;<br/><b>SEC_BD</b>"]
+            P_A["&laquo;component&raquo;<br/><b>Postgres</b>"]
+        SBE_A -. "&laquo;use&raquo;" .-> Node_A
+        SBE_A -.-> SBD_A
+        SBD_A -. "&laquo;use&raquo;" .-> P_A
+    end
+    class Cliente,AWS,Interno_AWS dispositivo;
+    class SF_C,SBE_A,SBD_A compLogico;
+    class R_C,Node_A,P_A cinzaEscuro;
+    class R_C,Node_A,P_A compTech;
+
+```
+
+**Ambiente de execução:**
+
+- Camada Cliente (Navegador Web): É o ambiente de front-end onde a interface do usuário é processada. Ele executa a aplicação construída em **React**, permitindo que os usuários interajam com o sistema via navegador em diferentes sistemas operacionais.
+- Camada de Aplicação (Node.js): Localizado na infraestrutura de nuvem (AWS Cloud), este ambiente é responsável pela execução da lógica de negócio. Ele hospeda a **SECBackEndAPI**, processando as requisições enviadas pelo cliente e aplicando as regras do sistema.
+- Camada de Dados (SGBD SQL): O ambiente crítico para a persistência das informações. Ele utiliza o motor do **PostgreSQL** para garantir a integridade, armazenamento e consulta dos dados.
+- Protocolo de Comunicação (HTTPS): Atua como o ambiente de tráfego seguro que interliga a Camada Cliente à Camada de Aplicação.
 
 ---
 
