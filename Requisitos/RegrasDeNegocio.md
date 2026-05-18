@@ -1,4 +1,4 @@
-# Regra de negócio da solução (RN) - Sistema ENADE Comentado (SEC)
+# Regras de negócio da solução (RN) - Sistema ENADE Comentado (SEC)
 
 ## Contexto
 
