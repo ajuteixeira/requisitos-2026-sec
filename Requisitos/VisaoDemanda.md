@@ -177,7 +177,48 @@ O sistema será uma aplicação web responsiva, estruturada para suportar alta e
 ### 7.1. Diagramas UML
 
 #### 7.1.1. Diagrama de Caso de Uso
+```mermaid
+graph LR
+    %% Estilização em tons de cinza (conforme o modelo fornecido)
+    classDef cinzaClaro fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
+    classDef cinzaEscuro fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
 
+    subgraph SEC ["<b>SEC</b>"]
+        %% Atores
+        A1["👤 <b>Aluno concluinte</b>"]
+        A2["👤 <b>Professor</b>"]
+        A3["👤 <b>Coordenador de curso</b>"]
+        A4["👤 <b>Administrador</b>"]
+
+        %% Casos de Uso (Formatados como ovais/stadium)
+        UC1(["Realizar simulados<br/>cronometrados"])
+        UC2(["Acessar fórum de<br/>discussão por questão"])
+        UC3(["Cadastrar questões<br/>para seu curso"])
+        UC4(["Visualizar questões<br/>cadastradas para seu curso"])
+        UC5(["Acessar relatórios de<br/>desempenho de turmas"])
+        UC6(["Gerenciar usuários e<br/>permissões de acesso"])
+        UC7(["Gerenciar banco de<br/>questões"])
+        UC8(["Gerenciar fóruns de<br/>questões"])
+
+        %% Associações Horizontais (Ator à esquerda -> Caso de Uso à direita)
+        A1 --- UC1
+        A1 --- UC2
+        A2 --- UC2
+        A2 --- UC3
+        A3 --- UC4
+        A3 --- UC5
+        A4 --- UC6
+        A4 --- UC7
+        A4 --- UC8
+
+        %% Relacionamento de Inclusão
+        UC2 -. "&laquo;Include&raquo;" .-> UC1
+    end
+
+    %% Aplicando as cores conforme a hierarquia estipulada
+    class A1,A2,A3,A4 cinzaClaro;
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8 cinzaEscuro;
+```
 
 #### 7.1.2. Diagrama de Componentes
 
