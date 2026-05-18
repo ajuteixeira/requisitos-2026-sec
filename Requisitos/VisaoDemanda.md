@@ -8,6 +8,7 @@
 | 12/05/2026 | 1.1 | Atualização dos atores descritos nas funcionalidades e da descrição da arquitetura | Juliana |
 | 13/05/2026 | 1.2 | Inclusão de permissões de cadastro para professores e visualização para coordenadores | Juliana |
 | 15/05/2026 | 1.3 | Inclusão dos diagramas de componentes e deployment | Juliana |
+| 18/05/2026 | 1.4 | Inclusão do diagrama de casos de uso e ajustes nas funcionalidades | Juliana |
 
 ## 1. Objetivo
 
@@ -38,7 +39,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 | :--- | :--- | :--- | :--- |
 | **Estudante** | Usuário Final | Realizar simulados, consultar gabaritos e interagir no fórum. | - |
 | **Coordenação de Curso** | Cliente | Acompanhar indicadores de desempenho, evolução das turmas e monitorar o cadastro de questões. | - |
-| **Professores** | Stakeholder | Prover apoio pedagógico, validar comentários técnicos e alimentar o banco de questões de sua área/curso. | - |
+| **Professores** | Stakeholder | Prover apoio pedagógico, validar comentários técnicos e alimentar o banco de questões de sua área e curso. | - |
 | **Equipe de TI** | Desenvolvimento | Implementar e manter o sistema. | - |
 | **INEP** | Fornecedor | Prover o padrão oficial de questões | - |
 
@@ -58,7 +59,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 
 ### 5.4. Administrador
 - **Descrição:** Integrante da equipe de suporte técnico.
-- **Objetivo:** Manter o banco de questões atualizado conforme as publicações do INEP, gerenciar permissões de usuários e moderar fóruns de discussão.
+- **Objetivo:** Gerenciar o banco de questões, as permissões de usuários e os fóruns de discussão.
 
 ## 6. Necessidades e funcionalidades
 
@@ -90,7 +91,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Valor:** Alto
 
 #### F2.2 Fórum de discussão por questão
-* **Descrição:** Espaço para troca de conhecimento, onde o acesso dos atores é restrito aos fóruns das questões vinculadas à sua área/curso.
+* **Descrição:** Espaço para troca de conhecimento, onde o acesso dos atores é restrito aos fóruns das questões vinculadas à sua área e curso.
 * **Incluída**
 * **Atores:** Aluno concluinte, Professor
 * **Frequência:** Média
@@ -114,32 +115,53 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Frequência:** Média
 * **Valor:** Alto
 
+#### F3.3 Relatório de questões cadastradas do curso
+* **Descrição:** Visão consolidada para a coordenação identificar as questões cadastradas para seu curso.
+* **Incluída**
+* **Atores:** Coordenador de curso
+* **Frequência:** Média
+* **Valor:** Alto
+
 ---
 
 ### Necessidade 4: Gestão de acesso e dados
 
-#### F4.1 Autenticação e Perfil
-* **Descrição:** Login seguro para diferenciar estudantes, professores, coordenador e administrador.
+#### F4.1 Autenticação de perfil
+* **Descrição:** Login seguro para diferenciar alunos concluintes, professores, coordenador e administrador.
 * **Incluída**
 * **Atores:** Aluno concluinte, Coordenador de curso, Professor, Administrador
 * **Frequência:** Alta
 * **Valor:** Alto
 
 #### F4.2 Manutenção global do banco de questões
-* **Descrição:** Permite ao administrador cadastrar, editar e organizar qualquer questão do sistema.
+* **Descrição:** Permite ao administrador visualizar, cadastrar, editar e excluir qualquer questão do sistema.
 * **Incluída**
 * **Atores:** Administrador
 * **Frequência:** Baixa
 * **Valor:** Médio
 
-#### F4.3 Cadastro restrito de questões
-* **Descrição:** Permite ao professor cadastrar e editar apenas questões de sua área/curso.
+#### F4.3 Gerenciamento global dos fóruns de questões
+* **Descrição:** Permite ao administrador visualizar e excluir qualquer interação em fóruns de questões.
+* **Incluída**
+* **Atores:** Administrador
+* **Frequência:** Baixa
+* **Valor:** Médio
+
+#### F4.4 Gerenciamento global de usuários
+* **Descrição:** Permite ao administrador gerenciar todos os perfis e permissões de usuários.
+* **Incluída**
+* **Atores:** Administrador
+* **Frequência:** Baixa
+* **Valor:** Médio
+
+#### F4.5 Cadastro de questões por área e curso
+* **Descrição:** Permite ao professor cadastrar e editar apenas questões de sua área e curso.
 * **Incluída**
 * **Atores:** Professor
 * **Frequência:** Média
 * **Valor:** Alto
 
-#### F4.4 Visualização de acervo em construção
+#### F4.6 Visualização de acervo em construção
 * **Descrição:** Permite ao coordenador visualizar as questões que estão sendo cadastradas pelos professores de seu curso.
 * **Incluída**
 * **Atores:** Coordenador de curso
@@ -242,5 +264,5 @@ graph LR
 - [X] Existem pelo menos duas personas descritas?
 - [X] Todas as necessidades e funcionalidades estão relacionadas a atores? 
 - [X] Há indicação de valor e frequência para cada funcionalidade?
-- [ ] A arquitetura está ilustrada (através de diagramas UML em anexo)? 
+- [X] A arquitetura está ilustrada (através de diagramas UML em anexo)? 
 - [X] O documento está escrito em linguagem clara e objetiva?
