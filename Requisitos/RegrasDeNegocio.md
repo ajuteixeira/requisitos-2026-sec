@@ -6,7 +6,7 @@ Este documento apresenta as regras de negócio essenciais para o funcionamento d
 
 - F1.1 Realização de simulados cronometrados
 - F2.2 Fórum de discussão por questão
-- F4.3 Cadastro restrito de questões
+- F4.3 Cadastro de questões por área e curso
 
 ## Histórico de Versões
 
@@ -22,10 +22,10 @@ Este documento apresenta as regras de negócio essenciais para o funcionamento d
 - **Regra:** A publicação de uma questão por professor ou administrador somente é concluída se os campos obrigatórios (texto base, enunciado, asserções e justificativa técnica) estiverem preenchidos.
 - **Critério verificável:** O sistema deve impedir a gravação e exibir um alerta indicando o campo ausente caso a estrutura esteja incompleta.
 
-### RN2. O sistema limita a manutenção de questões à área do professor
+### RN2. O sistema limita a manutenção de questões à área e curso do professor
 
 - **Identificador:** RN2
-- **Regra:** O professor pode cadastrar, editar ou gerenciar apenas questões que estejam diretamente vinculadas ao seu respectivo curso ou área de conhecimento.
+- **Regra:** O professor pode visualizar, cadastrar, editar e excluir apenas questões que estejam diretamente vinculadas ao seu respectivo curso e área de conhecimento.
 - **Critério verificável:** O sistema deve bloquear a operação e gerar uma mensagem de erro se o identificador do curso da questão for diferente da área de atuação do professor autenticado.
 
 ### RN3. O sistema restringe o acesso aos fóruns por vinculação acadêmica
