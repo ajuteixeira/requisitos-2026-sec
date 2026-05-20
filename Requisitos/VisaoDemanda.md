@@ -9,8 +9,10 @@
 | 13/05/2026 | 1.2 | Inclusão de permissões de cadastro para professores e visualização para coordenadores | Juliana |
 | 15/05/2026 | 1.3 | Inclusão dos diagramas de componentes e deployment | Juliana |
 | 18/05/2026 | 1.4 | Inclusão do diagrama de casos de uso e ajustes nas funcionalidades | Juliana |
+| 20/05/2026 | 1.5 | Atualização das necessidades, funcionalidades e diagramas. Inclusão do logo do sistema | Juliana |
 
 ## 1. Objetivo
+<img src="../Imagens/logo_v2.png" alt="1776555009224" width="20%">
 
 Definir a proposta de valor e o escopo do sistema de questões comentadas do ENADE, detalhando as necessidades dos estudantes de graduação, coordenações de curso e professores. O projeto foca na aplicação da engenharia de requisitos para especificar uma solução web responsiva que auxilie no preparo para o exame.
 
@@ -41,7 +43,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 | **Coordenação de Curso** | Cliente | Acompanhar indicadores de desempenho, evolução das turmas e monitorar o cadastro de questões. | - |
 | **Professores** | Stakeholder | Prover apoio pedagógico, validar comentários técnicos e alimentar o banco de questões de sua área e curso. | - |
 | **Equipe de TI** | Desenvolvimento | Implementar e manter o sistema. | - |
-| **INEP** | Fornecedor | Prover o padrão oficial de questões | - |
+| **INEP** | Fornecedor | Prover o padrão oficial de questões e a lista de cursos e áreas.| - |
 
 ## 5. Personas
 
@@ -59,7 +61,7 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 
 ### 5.4. Administrador
 - **Descrição:** Integrante da equipe de suporte técnico.
-- **Objetivo:** Gerenciar o banco de questões, as permissões de usuários e os fóruns de discussão.
+- **Objetivo:** Gerenciar o banco de questões, as permissões de usuários e os fóruns de discussão, além de cadastrar os dados iniciais do sistema (carga inicial).
 
 ## 6. Necessidades e funcionalidades
 
@@ -115,13 +117,6 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Frequência:** Média
 * **Valor:** Alto
 
-#### F3.3 Relatório de questões cadastradas do curso
-* **Descrição:** Visão consolidada para a coordenação identificar as questões cadastradas para seu curso.
-* **Incluída**
-* **Atores:** Coordenador de curso
-* **Frequência:** Média
-* **Valor:** Alto
-
 ---
 
 ### Necessidade 4: Gestão de acesso e dados
@@ -168,6 +163,20 @@ Não está no escopo dessa demanda a emissão de certificados oficiais de conclu
 * **Frequência:** Baixa
 * **Valor:** Médio
 
+#### F4.7 Cadastro de turmas por curso
+* **Descrição:** O coordenador de curso será o responsável por cadastrar as turmas de seu curso no sistema.
+* **Incluída**
+* **Atores:** Coordenador de curso
+* **Frequência:** Baixa
+* **Valor:** Alto
+
+#### F4.8 Cadastro e carga de dados básicos iniciais
+* **Descrição:** O administrador será responsável por cadastrar os dados básicos iniciais, como as áreas, cursos, coordenadores, professores e alunos, além do vínculo deles com seus respectivos cursos. Será feita uma carga inicial desses dados para o início do funcionamento do sistema.
+* **Incluída**
+* **Atores:** Administrador
+* **Frequência:** Baixa
+* **Valor:** Alto
+
 ## 7. Arquitetura da demanda
 
 ### Descrição da arquitetura
@@ -177,77 +186,12 @@ O sistema será uma aplicação web responsiva, estruturada para suportar alta e
 ### 7.1. Diagramas UML
 
 #### 7.1.1. Diagrama de Caso de Uso
-```mermaid
-graph LR
-    %% Estilização em tons de cinza (conforme o modelo fornecido)
-    classDef cinzaClaro fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
-    classDef cinzaEscuro fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
 
-    subgraph SEC ["<b>SEC</b>"]
-        %% Atores
-        A1["👤 <b>Aluno concluinte</b>"]
-        A2["👤 <b>Professor</b>"]
-        A3["👤 <b>Coordenador de curso</b>"]
-        A4["👤 <b>Administrador</b>"]
-
-        %% Casos de Uso (Formatados como ovais/stadium)
-        UC1(["Realizar simulados<br/>cronometrados"])
-        UC2(["Acessar fórum de<br/>discussão por questão"])
-        UC3(["Cadastrar questões<br/>para seu curso"])
-        UC4(["Visualizar questões<br/>cadastradas para seu curso"])
-        UC5(["Acessar relatórios de<br/>desempenho de turmas"])
-        UC6(["Gerenciar usuários e<br/>permissões de acesso"])
-        UC7(["Gerenciar banco de<br/>questões"])
-        UC8(["Gerenciar fóruns de<br/>questões"])
-
-        %% Associações Horizontais (Ator à esquerda -> Caso de Uso à direita)
-        A1 --- UC1
-        A1 --- UC2
-        A2 --- UC2
-        A2 --- UC3
-        A3 --- UC4
-        A3 --- UC5
-        A4 --- UC6
-        A4 --- UC7
-        A4 --- UC8
-
-        %% Relacionamento de Inclusão
-        UC2 -. "&laquo;Include&raquo;" .-> UC1
-    end
-
-    %% Aplicando as cores conforme a hierarquia estipulada
-    class A1,A2,A3,A4 cinzaClaro;
-    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8 cinzaEscuro;
-```
+![Diagrama de Caso de Uso](../Imagens/diagrama_casos_de_uso_v3.png)
 
 #### 7.1.2. Diagrama de Componentes
 
-```mermaid
-graph TD
-    %% Componentes
-    SF["&laquo;component&raquo;<br/><b>SECFrontEnd</b>"]
-    R["&laquo;component&raquo;<br/><b>React</b>"]
-    SBE["&laquo;component&raquo;<br/><b>SECBackEndAPI</b>"]
-    N["&laquo;component&raquo;<br/><b>Node.js</b>"]
-    SBD["&laquo;component&raquo;<br/><b>SEC_BD</b>"]
-    P["&laquo;component&raquo;<br/><b>Postgres</b>"]
-
-    %% Relacionamentos exatos da sua primeira imagem
-    SF -.-> SBE
-    SF -. "&laquo;use&raquo;" .-> R
-    SBE -. "&laquo;use&raquo;" .-> N
-    SBE -.-> SBD
-    SBD -. "&laquo;use&raquo;" .-> P
-
-    %% Estilização em tons de cinza (conforme a imagem escura)
-    classDef cinzaClaro fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
-    classDef cinzaEscuro fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
-
-    %% Aplicando as cores conforme a hierarquia da imagem
-    class SF,SBE,SBD cinzaClaro;
-    class R,N,P cinzaEscuro;
-
-```
+![Diagrama de Componentes](../Imagens/diagrama_componentes.png)
 
 **Componentes principais:**
 - FrontEnd
@@ -256,37 +200,7 @@ graph TD
 
 #### 7.1.3. Diagrama de Implantação
 
-```mermaid
-
-graph LR
-    classDef dispositivo fill:#161b22,stroke:#444c56,color:#c9d1d9,stroke-dasharray: 5 5;
-    classDef compLogico fill:#3d444d,stroke:#8b949e,stroke-width:1px,color:#ffffff;
-    classDef compTech fill:#21262d,stroke:#30363d,stroke-width:1px,color:#8b949e;
-    subgraph Cliente ["🖥️ MÁQUINA DO CLIENTE"]
-        direction TB
-        SF_C["&laquo;component&raquo;<br/><b>SECFrontEnd</b>"]
-        R_C["&laquo;component&raquo;<br/><b>React</b>"]
-        Specs["CPU: Quad-Core 2.4GHz+<br/>RAM: 8GB+<br/>Resolução: 1080p<br/>SO: Win 10+, macOS, Linux"]
-        SF_C -. "&laquo;use&raquo;" .-> R_C
-    end
-    SF_C -- "HTTPS" --> SBE_A
-    subgraph AWS ["☁️ AWS - CLOUDE"]
-        direction LR
-        SBE_A["&laquo;component&raquo;<br/><b>SECBackEndAPI</b>"]
-            direction TB
-            Node_A["&laquo;component&raquo;<br/><b>Node.js</b>"]
-            SBD_A["&laquo;component&raquo;<br/><b>SEC_BD</b>"]
-            P_A["&laquo;component&raquo;<br/><b>Postgres</b>"]
-        SBE_A -. "&laquo;use&raquo;" .-> Node_A
-        SBE_A -.-> SBD_A
-        SBD_A -. "&laquo;use&raquo;" .-> P_A
-    end
-    class Cliente,AWS,Interno_AWS dispositivo;
-    class SF_C,SBE_A,SBD_A compLogico;
-    class R_C,Node_A,P_A cinzaEscuro;
-    class R_C,Node_A,P_A compTech;
-
-```
+![Diagrama de Implantação](../Imagens/diagrama_deployment_v2.png)
 
 **Ambiente de execução:**
 
@@ -299,7 +213,7 @@ graph LR
 
 ## Checklist de Validação do Documento de Visão
 
-- [X] O objetivo está claro e alinhado ao problema/necessidade? 
+- [X] O objetivo está claro e alinhado ao problem/necessidade? 
 - [X] A proposta de valor é mensurável e relevante? 
 - [X] Todas as partes interessadas estão listadas com papéis definidos? 
 - [X] Existem pelo menos duas personas descritas?
